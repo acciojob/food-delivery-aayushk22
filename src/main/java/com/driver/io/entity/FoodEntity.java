@@ -25,6 +25,17 @@ public class FoodEntity{
 	@Column(nullable = false)
 	private String foodCategory;
 
+	public FoodEntity(long id, String foodId, String foodName, float foodPrice, String foodCategory) {
+		this.id = id;
+		this.foodId = foodId;
+		this.foodName = foodName;
+		this.foodPrice = foodPrice;
+		this.foodCategory = foodCategory;
+	}
+
+	public FoodEntity() {
+	}
+
 	public long getId() {
 		return id;
 	}
