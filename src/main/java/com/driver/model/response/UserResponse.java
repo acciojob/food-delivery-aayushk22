@@ -1,11 +1,24 @@
 package com.driver.model.response;
 
+import lombok.Builder;
+
+@Builder
 public class UserResponse {
 
 	private String userId;
 	private String email;
 	private String firstName;
 	private String lastName;
+
+	public UserResponse(String userId, String email, String firstName, String lastName) {
+		this.userId = userId;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	public UserResponse() {
+	}
 
 	public String getUserId() {
 		return userId;

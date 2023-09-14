@@ -6,6 +6,8 @@ import com.driver.model.request.UserDetailsRequestModel;
 import com.driver.model.response.OperationStatusModel;
 import com.driver.model.response.UserResponse;
 import com.driver.service.UserService;
+import com.driver.shared.dto.UserDto;
+import com.driver.transformers.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,10 +32,18 @@ public class UserController {
 		return null;
 	}
 
-	@PostMapping()
+	@PostMapping("/add-user")
 	public UserResponse createUser(@RequestBody UserDetailsRequestModel userDetails) throws Exception{
+		try{
+			UserDto userDto = UserTransformer.UserDetailsRequestModelToUserDto(userDetails);
+			UserDto savedUserDto = userService.createUser(userDto);
+			UserResponse response = UserTransformer.userDtoToUserResponse(savedUserDto);
+			return response;
+		}
+		catch (Exception e) {
+			return null;
+		}
 
-		return null;
 	}
 
 	@PutMapping(path = "/{id}")
