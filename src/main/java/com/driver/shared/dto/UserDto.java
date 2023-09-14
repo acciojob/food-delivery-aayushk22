@@ -11,6 +11,17 @@ public class UserDto{
 	private String lastName;
 	private String email;
 
+	public UserDto(long id, String userId, String firstName, String lastName, String email) {
+		this.id = id;
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
+	public UserDto() {
+	}
+
 	public long getId() {
 		return id;
 	}
