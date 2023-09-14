@@ -78,7 +78,7 @@ public class FoodServiceImpl implements FoodService {
 
     public void deleteFoodItem(String id) throws Exception {
         FoodEntity foodEntity = foodRepository.findByFoodId(id);
-        if (foodEntity == null) throw new Exception();
+        if (foodEntity == null) throw new NullPointerException();
         foodRepository.delete(foodEntity);
     }
 
