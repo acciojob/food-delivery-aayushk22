@@ -6,6 +6,8 @@ import java.util.UUID;
 import com.driver.model.request.FoodDetailsRequestModel;
 import com.driver.model.response.FoodDetailsResponse;
 import com.driver.model.response.OperationStatusModel;
+import com.driver.model.response.RequestOperationName;
+import com.driver.model.response.RequestOperationStatus;
 import com.driver.service.FoodService;
 import com.driver.shared.dto.FoodDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,12 +89,12 @@ public class FoodController {
 
 		try {
 			foodService.deleteFoodItem(id);
-			operationStatusModel.setOperationName("Delete Food from DB");
-			operationStatusModel.setOperationResult("SUCCESS");
+			operationStatusModel.setOperationName(String.valueOf(RequestOperationName.DELETE));
+			operationStatusModel.setOperationResult(String.valueOf(RequestOperationStatus.SUCCESS));
 		}
 		catch (Exception e) {
-			operationStatusModel.setOperationName("Delete Food from DB");
-			operationStatusModel.setOperationResult("FAILURE");
+			operationStatusModel.setOperationName(String.valueOf(RequestOperationName.DELETE));
+			operationStatusModel.setOperationResult(String.valueOf(RequestOperationStatus.ERROR));
 		}
 		return operationStatusModel;
 	}
