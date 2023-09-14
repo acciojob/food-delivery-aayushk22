@@ -8,6 +8,7 @@ import com.driver.shared.dto.FoodDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,6 +83,22 @@ public class FoodServiceImpl implements FoodService {
     }
 
     public List<FoodDto> getFoods() {
-        return null;
+        List<FoodEntity> foodEntityList = (List<FoodEntity>) foodRepository.findAll();
+
+        List<FoodDto> response = new ArrayList<>();
+
+        for (FoodEntity food: foodEntityList) {
+            FoodDto f = new FoodDto();
+            f.setFoodPrice(food.getFoodPrice());
+            f.setFoodCategory(food.getFoodCategory());
+            f.setFoodName(food.getFoodName());
+            f.setFoodId(food.getFoodId());
+            f.setId(food.getId());
+
+            response.add(f);
+        }
+
+        return response;
+
     }
 }

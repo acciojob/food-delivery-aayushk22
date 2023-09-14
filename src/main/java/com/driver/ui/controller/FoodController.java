@@ -1,5 +1,6 @@
 package com.driver.ui.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -99,9 +100,21 @@ public class FoodController {
 		return operationStatusModel;
 	}
 	
-	@GetMapping()
+	@GetMapping("/get-all-foods")
 	public List<FoodDetailsResponse> getFoods() {
+		List<FoodDto> foodDtoList = foodService.getFoods();
+		List<FoodDetailsResponse> foodDetailsResponses = new ArrayList<>();
 
-		return null;
+		for (FoodDto foodDto: foodDtoList) {
+			FoodDetailsResponse f = new FoodDetailsResponse();
+			f.setFoodId(foodDto.getFoodId());
+			f.setFoodCategory(foodDto.getFoodCategory());
+			f.setFoodName(foodDto.getFoodName());
+			f.setFoodPrice(foodDto.getFoodPrice());
+
+			foodDetailsResponses.add(f);
+		}
+
+		return foodDetailsResponses;
 	}
 }
