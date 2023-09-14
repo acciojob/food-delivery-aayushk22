@@ -120,13 +120,15 @@ public class FoodController {
 			foodService.deleteFoodItem(id);
 			operationStatusModel.setOperationName(String.valueOf(RequestOperationName.DELETE));
 			operationStatusModel.setOperationResult(String.valueOf(RequestOperationStatus.SUCCESS));
+			return operationStatusModel;
 		}
 		catch (NullPointerException nullPointerException) {
 			operationStatusModel.setOperationName(String.valueOf(RequestOperationName.DELETE));
 			operationStatusModel.setOperationResult(String.valueOf(RequestOperationStatus.ERROR));
+			return operationStatusModel;
 		}
 
-		return operationStatusModel;
+
 	}
 	
 	@GetMapping("/get-all-foods")
