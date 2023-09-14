@@ -57,7 +57,7 @@ public class FoodServiceImpl implements FoodService {
     public FoodDto updateFoodDetails(String foodId, FoodDto foodDetails) throws Exception {
         FoodEntity foodEntity = foodRepository.findByFoodId(foodId);
         if (foodEntity == null) {
-            throw new Exception("food not found");
+            throw new Exception();
         }
 
         foodEntity.setFoodPrice(foodDetails.getFoodPrice());
@@ -78,7 +78,7 @@ public class FoodServiceImpl implements FoodService {
 
     public void deleteFoodItem(String id) throws Exception {
         FoodEntity foodEntity = foodRepository.findByFoodId(id);
-        if (foodEntity == null) throw new Exception("invalid");
+        if (foodEntity == null) throw new Exception();
         foodRepository.delete(foodEntity);
     }
 

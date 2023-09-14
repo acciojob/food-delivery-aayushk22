@@ -66,21 +66,30 @@ public class FoodController {
 
 	@PostMapping("/create")
 	public FoodDetailsResponse createFood(@RequestBody FoodDetailsRequestModel foodDetails) {
-		//converting fooddetailsrequest to food dto
-		FoodDto foodDto = new FoodDto();
-		foodDto.setFoodCategory(foodDetails.getFoodCategory());
-		foodDto.setFoodName(foodDetails.getFoodName());
-		foodDto.setFoodPrice(foodDetails.getFoodPrice());
-		foodDto.setFoodId(String.valueOf(UUID.randomUUID()));
+		try {
+			//converting fooddetailsrequest to food dto
 
-		FoodDto savedFoodEntity = foodService.createFood(foodDto);
+			FoodDto foodDto = new FoodDto();
+			foodDto.setFoodCategory(foodDetails.getFoodCategory());
+			foodDto.setFoodName(foodDetails.getFoodName());
+			foodDto.setFoodPrice(foodDetails.getFoodPrice());
+			foodDto.setFoodId(String.valueOf(UUID.randomUUID()));
 
-		FoodDetailsResponse foodDetailsResponse = new FoodDetailsResponse();
-		foodDetailsResponse.setFoodCategory(savedFoodEntity.getFoodCategory());
-		foodDetailsResponse.setFoodName(savedFoodEntity.getFoodName());
-		foodDetailsResponse.setFoodPrice(savedFoodEntity.getFoodPrice());
-		foodDetailsResponse.setFoodId(savedFoodEntity.getFoodId());
-		return foodDetailsResponse;
+			FoodDto savedFoodEntity = foodService.createFood(foodDto);
+
+			FoodDetailsResponse foodDetailsResponse = new FoodDetailsResponse();
+			foodDetailsResponse.setFoodCategory(savedFoodEntity.getFoodCategory());
+			foodDetailsResponse.setFoodName(savedFoodEntity.getFoodName());
+			foodDetailsResponse.setFoodPrice(savedFoodEntity.getFoodPrice());
+			foodDetailsResponse.setFoodId(savedFoodEntity.getFoodId());
+			return foodDetailsResponse;
+		}
+
+		catch (Exception e) {
+			return null;
+		}
+
+
 	}
 
 	@PutMapping(path="/{id}")
