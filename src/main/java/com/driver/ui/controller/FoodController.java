@@ -125,10 +125,7 @@ public class FoodController {
 			operationStatusModel.setOperationName(String.valueOf(RequestOperationName.DELETE));
 			operationStatusModel.setOperationResult(String.valueOf(RequestOperationStatus.ERROR));
 		}
-		catch (Exception e) {
-			operationStatusModel.setOperationName(String.valueOf(RequestOperationName.DELETE));
-			operationStatusModel.setOperationResult(String.valueOf(RequestOperationStatus.ERROR));
-		}
+
 		return operationStatusModel;
 	}
 	
