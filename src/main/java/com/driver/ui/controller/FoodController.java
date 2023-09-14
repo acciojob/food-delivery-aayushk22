@@ -30,25 +30,8 @@ public class FoodController {
 	@Autowired
 	FoodService foodService;
 
-//	@GetMapping(path="/{id}")
-//	public FoodDetailsResponse getFood(@PathVariable String id) throws Exception{
-//		try {
-//			FoodDto foodDto = foodService.getFoodById(id);
-//			FoodDetailsResponse response = new FoodDetailsResponse();
-//			response.setFoodId(foodDto.getFoodId());
-//			response.setFoodPrice(foodDto.getFoodPrice());
-//			response.setFoodName(foodDto.getFoodName());
-//			response.setFoodCategory(foodDto.getFoodCategory());
-//			return response;
-//		}
-//		catch (Exception e) {
-//			return null;
-//		}
-//
-//	}
-
 	@GetMapping(path="/{id}")
-	public ResponseEntity getFood(@PathVariable String id) throws Exception{
+	public FoodDetailsResponse getFood(@PathVariable String id) throws Exception{
 		try {
 			FoodDto foodDto = foodService.getFoodById(id);
 			FoodDetailsResponse response = new FoodDetailsResponse();
@@ -56,13 +39,30 @@ public class FoodController {
 			response.setFoodPrice(foodDto.getFoodPrice());
 			response.setFoodName(foodDto.getFoodName());
 			response.setFoodCategory(foodDto.getFoodCategory());
-			return new ResponseEntity<>(response, HttpStatus.FOUND);
+			return response;
 		}
 		catch (Exception e) {
-			return new ResponseEntity<>("Food Not Found",HttpStatus.NOT_FOUND);
+			return null;
 		}
 
 	}
+
+//	@GetMapping(path="/{id}")
+//	public ResponseEntity getFood(@PathVariable String id) throws Exception{
+//		try {
+//			FoodDto foodDto = foodService.getFoodById(id);
+//			FoodDetailsResponse response = new FoodDetailsResponse();
+//			response.setFoodId(foodDto.getFoodId());
+//			response.setFoodPrice(foodDto.getFoodPrice());
+//			response.setFoodName(foodDto.getFoodName());
+//			response.setFoodCategory(foodDto.getFoodCategory());
+//			return new ResponseEntity<>(response, HttpStatus.FOUND);
+//		}
+//		catch (Exception e) {
+//			return new ResponseEntity<>("Food Not Found",HttpStatus.NOT_FOUND);
+//		}
+//
+//	}
 
 	@PostMapping("/create")
 	public FoodDetailsResponse createFood(@RequestBody FoodDetailsRequestModel foodDetails) {

@@ -41,7 +41,7 @@ public class FoodServiceImpl implements FoodService {
         FoodEntity foodEntity = foodRepository.findByFoodId(foodId);
 
         if (foodEntity == null) {
-            throw new Exception("food not found");
+            throw new Exception();
         }
 
         FoodDto foodDto = new FoodDto();
