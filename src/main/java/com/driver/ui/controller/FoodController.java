@@ -12,6 +12,8 @@ import com.driver.model.response.RequestOperationStatus;
 import com.driver.service.FoodService;
 import com.driver.shared.dto.FoodDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,8 +30,25 @@ public class FoodController {
 	@Autowired
 	FoodService foodService;
 
+//	@GetMapping(path="/{id}")
+//	public FoodDetailsResponse getFood(@PathVariable String id) throws Exception{
+//		try {
+//			FoodDto foodDto = foodService.getFoodById(id);
+//			FoodDetailsResponse response = new FoodDetailsResponse();
+//			response.setFoodId(foodDto.getFoodId());
+//			response.setFoodPrice(foodDto.getFoodPrice());
+//			response.setFoodName(foodDto.getFoodName());
+//			response.setFoodCategory(foodDto.getFoodCategory());
+//			return response;
+//		}
+//		catch (Exception e) {
+//			return null;
+//		}
+//
+//	}
+
 	@GetMapping(path="/{id}")
-	public FoodDetailsResponse getFood(@PathVariable String id) throws Exception{
+	public ResponseEntity getFood(@PathVariable String id) throws Exception{
 		try {
 			FoodDto foodDto = foodService.getFoodById(id);
 			FoodDetailsResponse response = new FoodDetailsResponse();
@@ -37,10 +56,10 @@ public class FoodController {
 			response.setFoodPrice(foodDto.getFoodPrice());
 			response.setFoodName(foodDto.getFoodName());
 			response.setFoodCategory(foodDto.getFoodCategory());
-			return response;
+			return new ResponseEntity<>(response, HttpStatus.FOUND);
 		}
 		catch (Exception e) {
-			return null;
+			return new ResponseEntity<>("Food Not Found",HttpStatus.NOT_FOUND);
 		}
 
 	}
