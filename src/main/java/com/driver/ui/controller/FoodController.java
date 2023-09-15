@@ -123,9 +123,10 @@ public class FoodController {
 			return operationStatusModel;
 		}
 		catch (NullPointerException nullPointerException) {
-			operationStatusModel.setOperationName(String.valueOf(RequestOperationName.DELETE));
-			operationStatusModel.setOperationResult(String.valueOf(RequestOperationStatus.ERROR));
-			return operationStatusModel;
+//			operationStatusModel.setOperationName(String.valueOf(RequestOperationName.DELETE));
+//			operationStatusModel.setOperationResult(String.valueOf(RequestOperationStatus.ERROR));
+//			return operationStatusModel;
+			return new OperationStatusModel();
 		}
 
 
